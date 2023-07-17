@@ -15,7 +15,7 @@
     <name>Springboot_demo_app</name>
     <description>Springboot_demo_app</description>
     <properties>
-        <java.version>20</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
