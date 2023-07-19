@@ -3,6 +3,7 @@ FROM maven:3-jdk-8-alpine AS build
 # Copy folder in docker
 # WORKDIR /opt/app
 COPY ./ /opt/app
+WORKDIR /opt/app
 RUN mvn clean install -DskipTests
 # Run spring boot in Docker
 FROM openjdk:8-jdk-alpine
