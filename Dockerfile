@@ -1,12 +1,12 @@
 # Docker Build Maven Stage
-FROM maven:3-jdk-8-alpine AS build
+FROM maven:3-jdk-17-alpine AS build
 # Copy folder in docker
 # WORKDIR /opt/app
 COPY ./ /opt/app
 WORKDIR /opt/app
 RUN mvn clean install -DskipTests
 # Run spring boot in Docker
-FROM openjdk:8-jdk-alpine
+FROM openjdk:17-jdk-alpine
 COPY --from=build /opt/app/target/*.war app.war
 ENV PORT 8081
 EXPOSE $PORT
