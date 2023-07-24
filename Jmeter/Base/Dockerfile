@@ -21,10 +21,10 @@ RUN   mkdir /jmeter \
       && rm apache-jmeter-$JMETER_VERSION.tgz
 
 # ADD all the plugins
-ADD jmeter-plugins/lib /jmeter/apache-jmeter-$JMETER_VERSION/lib
+#ADD jmeter-plugins/lib /jmeter/apache-jmeter-$JMETER_VERSION/lib
 
 # ADD Load test script
-ADD ../TestStudents.jmx TestStudents.jmx
+ADD TestStudents.jmx TestStudents.jmx
 
 # Set JMeter Home
 ENV JMETER_HOME /jmeter/apache-jmeter-$JMETER_VERSION/
