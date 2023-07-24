@@ -1,4 +1,4 @@
-# Use vinsdocker base image
+# Use behsazanqc base image
 FROM behsazanqc/jmbase
 MAINTAINER HanaBizhani
 
