@@ -39,5 +39,36 @@ pipeline {
               sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
             }
         }
+        
+        stage('Jmeter Infra'){
+            steps{
+                sh "docker stop master"
+                sh "docker rm master"
+                sh "docker stop slave01"
+                sh "docker rm slave01"
+                sh "docker stop slave02"
+                sh "docker rm slave02"
+                sh "docker stop slave03"
+                sh "docker rm slave03"
+                
+                sh "docker run -dit --name master behsazanqc/jmmaster /bin/bash"
+                sh "docker run -dit --name slave01 behsazanqc/jmslave /bin/bash"
+                sh "docker run -dit --name slave02 behsazanqc/jmslave /bin/bash"
+                sh "docker run -dit --name slave03 behsazanqc/jmslave /bin/bash"
+                sh "docker ps -a"
+                // sh "docker inspect --format '{{ .Name }} => {{ .NetworkSettings.IPAddress }}' $(sudo docker ps -a -q)"
+                // sh "docker exec -i master sh -c 'cat > /jmeter/apache-jmeter-5.6.2/bin/TestStudents.jmx' < TestStudents.jmx"
+                // sh "docker exec -it master /bin/bash"
+                sh "docker exec master jmeter -n -t TestStudents.jmx"
+            }
+        }
+        
+        Stage("Run API Tests"){
+            steps{
+                
+            }
+        }
+        
+        
     }
 }
