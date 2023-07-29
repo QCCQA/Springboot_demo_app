@@ -63,9 +63,9 @@ pipeline {
             }
         }
         
-        Stage("Run API Tests"){
+        stage("Run API Tests"){
             steps{
-                
+                sh "newman run StudentsApiTest.postman_collection.json -r htmlextra"
             }
         }
         
